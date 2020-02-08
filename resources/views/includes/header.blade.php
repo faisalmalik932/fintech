@@ -7,13 +7,14 @@
 <!-- App favicon -->
 <link rel="shortcut icon" href="{{ asset('public/assets/images/favicon.ico') }}">
 
-<link href="../assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+<link href="{{ asset('public/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet">
 
 <!-- App css -->
 <link href="{{ asset('public/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('public/assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('public/assets/css/metisMenu.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('public/assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
 

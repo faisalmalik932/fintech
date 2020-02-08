@@ -16,8 +16,8 @@
                     <div class="card-body">
                         <div class="px-3">
                             <div class="auth-logo-box">
-                                <a href="../analytics/analytics-index.html" class="logo logo-admin"><img
-                                        src="../assets/images/logo-sm.png" height="55" alt="logo" class="auth-logo"></a>
+                                <a href="#" class="logo logo-admin"><img
+                                        src="{{ asset('public/assets/images/logo-sm.png') }}" height="55" alt="logo" class="auth-logo"></a>
                             </div>
                             <!--end auth-logo-box-->
 
@@ -28,13 +28,13 @@
                             <!--end auth-logo-text-->
 
 
-                            <form class="form-horizontal auth-form my-4" action="index.html">
-
+                            <form class="form-horizontal auth-form my-4">
+                                @csrf
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="individual" name="customRadio"
+                                            <input type="radio" id="individual" name="type"
                                                 class="custom-control-input">
                                             <label class="custom-control-label" for="individual">Individual</label>
                                         </div>
@@ -42,7 +42,7 @@
 
                                     <div class="col-md-6">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="company" name="customRadio"
+                                            <input type="radio" id="company" name="type"
                                                 class="custom-control-input">
                                             <label class="custom-control-label" for="company">Company</label>
                                         </div>
@@ -56,7 +56,7 @@
                                         <span class="auth-form-icon">
                                             <i class="dripicons-mail"></i>
                                         </span>
-                                        <input type="fname" class="form-control" id="fname"
+                                        <input type="fname" class="form-control" name="fname" id="fname"
                                             placeholder="Enter First Name">
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                         <span class="auth-form-icon">
                                             <i class="dripicons-mail"></i>
                                         </span>
-                                        <input type="lname" class="form-control" id="lname"
+                                        <input type="lname" class="form-control" name="lname" id="lname"
                                             placeholder="Enter Last Name">
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
 
                                 <div class="form-group mb-0 row">
                                     <div class="col-12 mt-2">
-                                        <button class="btn btn-primary btn-round btn-block waves-effect waves-light"
+                                        <button class="btn btn-primary btn-round btn-block waves-effect waves-light save_register_btn"
                                             type="submit">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
                                     </div>
                                     <!--end col-->
@@ -161,6 +161,38 @@
     <!-- End Log In page -->
 
     @include('includes.scripts')
+
+
+    <script>
+
+ 
+
+        $(document).ready(function() {
+            $('.save_register_btn').on('click', function(e) {
+                e.preventDefault();
+              var fname = $('#fname').val();
+              var lname = $('#lname').val();
+              $.ajax({
+                url: 'save_register',
+                type: 'POST',
+                data: {
+                    '_token': '<?= csrf_token() ?>',
+                    fname: fname,
+                    lname: lname
+                },
+                success:function(data) {
+                    
+                
+                    // if(data.status) {
+                    //     console.log('successfully submitted');
+                    // } else {
+                    //     console.log('Data not submitted');
+                    // }
+                }
+              });
+            });
+        });
+    </script>
 
 </body>
 
