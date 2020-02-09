@@ -17,6 +17,8 @@ class RegisterController extends Controller
             $user = new User;
             $user->fname = $request['fname'];
             $user->lname = $request['lname'];
+            $user->email = $request['email'];
+            $user->password = bcrypt($request['password']);
             if($user->save()) {
                 return response()->json(['status' => 'Data Submitted Successfully']);
             } else {

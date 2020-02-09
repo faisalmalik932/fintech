@@ -18,7 +18,7 @@
 
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('dashboard');
 
 
 Route::get('/register', 'users\RegisterController@register');
@@ -26,3 +26,4 @@ Route::post('save_register', 'users\RegisterController@save_register');
 
 
 Route::get('/login', 'users\LoginController@login');
+Route::post('user_login', 'users\LoginController@user_login');

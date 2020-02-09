@@ -76,12 +76,12 @@
                                 <!--end form-group-->
 
                                 <div class="form-group">
-                                    <label for="useremail">Email</label>
+                                    <label for="email">Email</label>
                                     <div class="input-group mb-3">
                                         <span class="auth-form-icon">
                                             <i class="dripicons-mail"></i>
                                         </span>
-                                        <input type="email" class="form-control" id="useremail"
+                                        <input type="email" name="email" class="form-control" id="email"
                                             placeholder="Enter Email">
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                                 <span class="auth-form-icon">
                                                     <i class="dripicons-user"></i>
                                                 </span>
-                                                <input type="password" class="form-control" id="password"
+                                                <input type="password" name="password" class="form-control" id="password"
                                                     placeholder="Enter Password">
                                             </div>
                                         </div>
@@ -172,22 +172,26 @@
                 e.preventDefault();
               var fname = $('#fname').val();
               var lname = $('#lname').val();
+              var email = $('#email').val();
+              var password = $('#password').val();
+              var company = $('#company').val();
               $.ajax({
                 url: 'save_register',
                 type: 'POST',
                 data: {
                     '_token': '<?= csrf_token() ?>',
                     fname: fname,
-                    lname: lname
+                    lname: lname,
+                    email: email,
+                    password: password,
+                    company: company
                 },
-                success:function(data) {
-                    
-                
-                    // if(data.status) {
-                    //     console.log('successfully submitted');
-                    // } else {
-                    //     console.log('Data not submitted');
-                    // }
+                success:function(data) {                
+                    if(data.status) {
+                        console.log('successfully submitted');
+                    } else {
+                        console.log('Data not submitted');
+                    }
                 }
               });
             });

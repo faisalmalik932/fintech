@@ -28,14 +28,15 @@
                             <!--end auth-logo-text-->
 
 
-                            <form class="form-horizontal auth-form my-4" action="index.html">
+                            <form class="form-horizontal auth-form my-4">
+                                   @csrf 
                                 <div class="form-group">
-                                    <label for="useremail">Email</label>
+                                    <label for="email">Email</label>
                                     <div class="input-group mb-3">
                                         <span class="auth-form-icon">
                                             <i class="dripicons-mail"></i>
                                         </span>
-                                        <input type="email" class="form-control" id="useremail"
+                                        <input type="email" name="email" class="form-control" id="email"
                                             placeholder="Enter Email">
                                     </div>
                                 </div>
@@ -48,7 +49,7 @@
                                                 <span class="auth-form-icon">
                                                     <i class="dripicons-user"></i>
                                                 </span>
-                                                <input type="password" class="form-control" id="password"
+                                                <input type="password" name="password" class="form-control" id="password"
                                                     placeholder="Enter Password">
                                             </div>
                                         </div>
@@ -64,7 +65,7 @@
 
                                 <div class="form-group mb-0 row">
                                     <div class="col-12 mt-2">
-                                        <button class="btn btn-primary btn-round btn-block waves-effect waves-light"
+                                        <button class="btn btn-primary btn-round btn-block waves-effect waves-light loginBtn"
                                             type="submit">Login <i class="fas fa-sign-in-alt ml-1"></i></button>
                                     </div>
                                     <!--end col-->
@@ -92,6 +93,42 @@
     <!-- End Log In page -->
 
     @include('includes.scripts')
+
+
+    <script>
+
+$(document).ready(function() {
+        $(".loginBtn").click(function(e) {
+  
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+    
+            e.preventDefault();
+            var email     = $("#email").val();
+            var password  = $("#password").val();
+    
+            $.ajax({
+                url: 'user_login',
+                type: 'POST',
+                data: {
+                    email: email,
+                    password: password
+                },
+                success: function(data) {
+                    if(data.status) {
+                        window.location = "{{ route('dashboard') }}"
+                        console.log('successfully submitted');
+                    } else {
+                        console.log('Data not submitted');
+                    }
+                }
+            });
+          });  
+        }); 
+    </script>
 
 </body>
 
