@@ -77,7 +77,7 @@
                         <!--end /div-->
 
                         <div class="m-3 text-center text-muted">
-                            <p class="">Dont have an account ? <a href="../authentication/auth-login.html"
+                            <p class="">Dont have an account ? <a href="{{ route('register') }}"
                                     class="text-primary ml-2">Register</a></p>
                         </div>
                     </div>

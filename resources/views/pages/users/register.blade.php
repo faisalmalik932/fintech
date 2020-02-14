@@ -17,7 +17,8 @@
                         <div class="px-3">
                             <div class="auth-logo-box">
                                 <a href="#" class="logo logo-admin"><img
-                                        src="{{ asset('public/assets/images/logo-sm.png') }}" height="55" alt="logo" class="auth-logo"></a>
+                                        src="{{ asset('public/assets/images/logo-sm.png') }}" height="55" alt="logo"
+                                        class="auth-logo"></a>
                             </div>
                             <!--end auth-logo-box-->
 
@@ -28,7 +29,7 @@
                             <!--end auth-logo-text-->
 
 
-                            <form class="form-horizontal auth-form my-4">
+                            <form class="form-horizontal auth-form my-4" id="reg_form">
                                 @csrf
 
                                 <div class="row">
@@ -42,21 +43,20 @@
 
                                     <div class="col-md-6">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="company" name="type"
-                                                class="custom-control-input">
+                                            <input type="radio" id="company" name="type" class="custom-control-input">
                                             <label class="custom-control-label" for="company">Company</label>
                                         </div>
                                     </div>
                                 </div>
 
-                     <br>
+                                <br>
                                 <div class="form-group">
                                     <label for="fname">First name</label>
                                     <div class="input-group mb-3">
                                         <span class="auth-form-icon">
                                             <i class="dripicons-mail"></i>
                                         </span>
-                                        <input type="fname" class="form-control" name="fname" id="fname"
+                                        <input type="text" class="form-control" name="fname" id="fname"
                                             placeholder="Enter First Name">
                                     </div>
                                 </div>
@@ -95,8 +95,8 @@
                                                 <span class="auth-form-icon">
                                                     <i class="dripicons-user"></i>
                                                 </span>
-                                                <input type="password" name="password" class="form-control" id="password"
-                                                    placeholder="Enter Password">
+                                                <input type="password" name="password" class="form-control"
+                                                    id="password" placeholder="Enter Password">
                                             </div>
                                         </div>
                                         <!--end form-group-->
@@ -109,7 +109,7 @@
                                                 <span class="auth-form-icon">
                                                     <i class="dripicons-user"></i>
                                                 </span>
-                                                <input type="password" class="form-control" id="cpassword"
+                                                <input type="password" name="cpassword" class="form-control" id="cpassword"
                                                     placeholder="Confirm Password">
                                             </div>
                                         </div>
@@ -133,7 +133,8 @@
 
                                 <div class="form-group mb-0 row">
                                     <div class="col-12 mt-2">
-                                        <button class="btn btn-primary btn-round btn-block waves-effect waves-light save_register_btn"
+                                        <button
+                                            class="btn btn-primary btn-round btn-block waves-effect waves-light save_register_btn"
                                             type="submit">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
                                     </div>
                                     <!--end col-->
@@ -161,43 +162,80 @@
     <!-- End Log In page -->
 
     @include('includes.scripts')
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 
     <script>
 
- 
+        $(document).ready(function () {
 
-        $(document).ready(function() {
-            $('.save_register_btn').on('click', function(e) {
-                e.preventDefault();
-              var fname = $('#fname').val();
-              var lname = $('#lname').val();
-              var email = $('#email').val();
-              var password = $('#password').val();
-              var company = $('#company').val();
-              $.ajax({
-                url: 'save_register',
-                type: 'POST',
-                data: {
-                    '_token': '<?= csrf_token() ?>',
-                    fname: fname,
-                    lname: lname,
-                    email: email,
-                    password: password,
-                    company: company
-                },
-                success:function(data) {                
-                    if(data.status) {
-                        console.log('successfully submitted');
-                    } else {
-                        console.log('Data not submitted');
+            $('.save_register_btn').on('click', function (e) {
+
+                var fname = $('#fname').val();
+                var lname = $('#lname').val();
+                var email = $('#email').val();
+                var company = $('#company').val();
+                var password = $('#password').val();
+                var cpassword = $('#cpassword').val();
+                var form = $(this).parents('form');
+                
+           
+                $(form).validate({
+                    rules: {
+                        fname: {
+                            required: true,
+                        },
+                        lname: {
+                            required: true,
+                        },
+                        email: {
+                            required: true,
+                            email: true,
+                        },
+                        password: {
+                            required: true,
+                            minlength: 6
+                        },
+                        cpassword: {
+                            required: true,
+                            equalTo: "#password"
+                        },
+                    },
+                    messages: {
+                        fname: "First Name is required.",
+                        lname: "Last Name is required.",
+                    },
+                    errorElement: "em",
+                        errorPlacement: function (error, element) {
+                        error.appendTo(element.parent().parent().after());
+                    },
+                    submitHandler: function () {
+            
+                        var formData = new FormData(form[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: 'save_register',
+                            data: formData,
+                            processData: false,
+                        contentType: false,
+                            success: function (data) {
+                                document.getElementById("reg_form").reset();
+                                console.log(data);
+                                if (data.status) {
+                                    window.location = "{{ route('login') }}"
+                                    console.log('register successfully');
+                                } else {
+                                 console.log('Not Registered Successfully');
+                                }
+                            },
+                            error: function (err) {
+                              console.log(err);
+                            }
+                        });
                     }
-                }
-              });
+                });
             });
         });
     </script>
-
 </body>
-
 </html>

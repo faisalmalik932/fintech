@@ -10,7 +10,7 @@
         <script src="{{ url('public/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
         <script src="{{ url('public/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
         <script src="{{ url('public/assets/pages/jquery.crm_dashboard.init.js') }}"></script>
-
+        
 
         <!-- App js -->
         <script src="{{ url('public/assets/js/app.js') }}"></script>
