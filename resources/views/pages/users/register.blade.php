@@ -53,9 +53,6 @@
                                 <div class="form-group">
                                     <label for="fname">First name</label>
                                     <div class="input-group mb-3">
-                                        <span class="auth-form-icon">
-                                            <i class="dripicons-mail"></i>
-                                        </span>
                                         <input type="text" class="form-control" name="fname" id="fname"
                                             placeholder="Enter First Name">
                                     </div>
@@ -66,9 +63,6 @@
                                 <div class="form-group">
                                     <label for="lname">Last Name</label>
                                     <div class="input-group mb-3">
-                                        <span class="auth-form-icon">
-                                            <i class="dripicons-mail"></i>
-                                        </span>
                                         <input type="lname" class="form-control" name="lname" id="lname"
                                             placeholder="Enter Last Name">
                                     </div>
@@ -78,9 +72,6 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <div class="input-group mb-3">
-                                        <span class="auth-form-icon">
-                                            <i class="dripicons-mail"></i>
-                                        </span>
                                         <input type="email" name="email" class="form-control" id="email"
                                             placeholder="Enter Email">
                                     </div>
@@ -92,9 +83,6 @@
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <div class="input-group mb-3">
-                                                <span class="auth-form-icon">
-                                                    <i class="dripicons-user"></i>
-                                                </span>
                                                 <input type="password" name="password" class="form-control"
                                                     id="password" placeholder="Enter Password">
                                             </div>
@@ -106,9 +94,6 @@
                                         <div class="form-group">
                                             <label for="cpassword">Confirm Password</label>
                                             <div class="input-group mb-3">
-                                                <span class="auth-form-icon">
-                                                    <i class="dripicons-user"></i>
-                                                </span>
                                                 <input type="password" name="cpassword" class="form-control" id="cpassword"
                                                     placeholder="Confirm Password">
                                             </div>
@@ -210,22 +195,21 @@
                         error.appendTo(element.parent().parent().after());
                     },
                     submitHandler: function () {
-            
                         var formData = new FormData(form[0]);
                         $.ajax({
                             type: 'POST',
                             url: 'save_register',
                             data: formData,
                             processData: false,
-                        contentType: false,
+                            contentType: false,
                             success: function (data) {
                                 document.getElementById("reg_form").reset();
-                                console.log(data);
                                 if (data.status) {
-                                    window.location = "{{ route('login') }}"
-                                    console.log('register successfully');
+                                    showCustomSucces(data.message);
+                                } else if(data.exists) {
+                                    showCustomError(data.message);
                                 } else {
-                                 console.log('Not Registered Successfully');
+                                    showCustomError(data.message);
                                 }
                             },
                             error: function (err) {

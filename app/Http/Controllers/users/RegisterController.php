@@ -14,16 +14,23 @@ class RegisterController extends Controller
     }
 
     public function save_register(Request $request) {
-    
+        
+        $user = User::where('email', $request['email'])->first();
+
+        if($user) {
+            return response()->json(['exists' => true, 'message' => 'Email Already Exists']);
+        } else {
             $user = new User;
             $user->fname = $request['fname'];
             $user->lname = $request['lname'];
             $user->email = $request['email'];
             $user->password = bcrypt($request['password']);
-            if($user->save()) {
-                return response()->json(['status' => 'Data Submitted Successfully']);
-            } else {
-                return response()->json(['status' => 'Data not submnitted']);
-            }
-    }
+        }
+
+        if($user->save()) {
+            return response()->json(['status' => true, 'message' => 'Data Submitted Successfully']);
+        } else {
+            return response()->json(['status' => true, 'message' => 'Data not submnitted']);
+        }
+}
 }

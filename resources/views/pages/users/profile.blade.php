@@ -115,7 +115,8 @@
                                             <label for="comp_corporation_city">Company City Name</label>
                                             <input type="text" class="form-control" id="comp_corporation_city" name="comp_corporation_city" placeholder="Enter Company City Name">
                                         </div><!--end form-group-->
-                                        
+                                     
+                                        <input type = "hidden" name = "id" value = "{{Auth::user()->id}}">
                                         <button type="submit" class="btn btn-secondary btn-sm save_user_data">Save Change</button>
                                     </form> <!--end form-->
                                 </div><!--end card-body-->

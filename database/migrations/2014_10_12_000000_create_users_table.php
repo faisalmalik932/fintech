@@ -22,6 +22,14 @@ class CreateUsersTable extends Migration
             $table->enum('type', ['individual', 'company']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('address_line_one')->nullable();
+            $table->string('address_line_two')->nullable();
+            $table->string('country_name')->nullable();
+            $table->string('city_name')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('phone_no')->nullable();
+            $table->string('landline_no')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

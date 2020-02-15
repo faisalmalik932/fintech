@@ -33,9 +33,6 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <div class="input-group mb-3">
-                                        <span class="auth-form-icon">
-                                            <i class="dripicons-mail"></i>
-                                        </span>
                                         <input type="email" name="email" class="form-control" id="email"
                                             placeholder="Enter Email">
                                     </div>
@@ -46,9 +43,6 @@
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <div class="input-group mb-3">
-                                                <span class="auth-form-icon">
-                                                    <i class="dripicons-user"></i>
-                                                </span>
                                                 <input type="password" name="password" class="form-control" id="password"
                                                     placeholder="Enter Password">
                                             </div>
