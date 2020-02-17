@@ -14,6 +14,14 @@ function showCustomSucces(text) {
     )
 }
 
+function showUpdateSucces(text) {
+    Swal.fire(
+        'Success!',
+        text,
+        'success'
+    )
+}
+
 function showDeletedDialog(text) {
     Swal.fire(
         'Deleted!',

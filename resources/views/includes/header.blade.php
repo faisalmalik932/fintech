@@ -5,7 +5,7 @@
 <meta content="Mannatthemes" name="author" />
 
 <!-- App favicon -->
-<link rel="shortcut icon" href="{{ asset('public/assets/images/favicon.ico') }}">
+<link rel="shortcut icon" href="{{ asset('public/assets/images/favicon.ico.png') }}">
 
 <link href="{{ asset('public/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet">
 

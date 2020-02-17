@@ -33,7 +33,7 @@ class ProfileController extends Controller
                 ]);
         
         if($user_update) {
-            return response()->json(['status' => 'Data updated Successfully']);
+            return response()->json(['status' => true, 'message' => 'Data Submitted Successfully']);
         } else {
             return response()->json(['status' => 'Data not updated']);
         }

@@ -17,7 +17,7 @@
                         <div class="px-3">
                             <div class="auth-logo-box">
                                 <a href="#" class="logo logo-admin"><img
-                                        src="{{ asset('public/assets/images/logo-sm.png') }}" height="55" alt="logo"
+                                        src="{{ asset('public/assets/images/logo-sm.svg') }}" height="40" width="65" alt="logo"
                                         class="auth-logo"></a>
                             </div>
                             <!--end auth-logo-box-->
@@ -131,7 +131,7 @@
                         <!--end /div-->
 
                         <div class="m-3 text-center text-muted">
-                            <p class="">Already have an account ? <a href="../authentication/auth-login.html"
+                            <p class="">Already have an account ? <a href="{{ route('login') }}"
                                     class="text-primary ml-2">Log in</a></p>
                         </div>
                     </div>
@@ -205,6 +205,7 @@
                             success: function (data) {
                                 document.getElementById("reg_form").reset();
                                 if (data.status) {
+                                    window.location = "{{ route('login') }}"
                                     showCustomSucces(data.message);
                                 } else if(data.exists) {
                                     showCustomError(data.message);

@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
         <h1>
-            User Dashboard
+            Make Payment
         </h1>
     </div>
 @endsection

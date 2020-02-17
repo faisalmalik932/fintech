@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
         <h1>
-            User Dashboard
+            Pay Vat
         </h1>
     </div>
 @endsection

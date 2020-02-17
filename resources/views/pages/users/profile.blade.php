@@ -77,43 +77,43 @@
                                         <h4 class="mt-0 mb-3 header-title">Profile Details</h4>
                                         <div class="form-group">
                                             <label for="address_line_one">Address 1</label>
-                                            <input type="text" class="form-control" id="address_line_one" name="address_line_one" placeholder="Address 1">
+                                            <input type="text" class="form-control" id="address_line_one" name="address_line_one" placeholder="Address 1" value="{{ Auth::user()->address_line_one }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="address_line_two">Address 2</label>
-                                            <input type="text" class="form-control" id="address_line_two" name="address_line_two" placeholder="Address 2">
+                                            <input type="text" class="form-control" id="address_line_two" name="address_line_two" placeholder="Address 2" value="{{ Auth::user()->address_line_two }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="country_name">Country</label>
-                                            <input type="text" class="form-control" id="country_name" name="country_name" placeholder="Country">
+                                            <input type="text" class="form-control" id="country_name" name="country_name" placeholder="Country" value="{{ Auth::user()->country_name }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="city_name">City</label>
-                                            <input type="text" class="form-control" id="city_name" name="city_name" placeholder="City">
+                                            <input type="text" class="form-control" id="city_name" name="city_name" placeholder="City" value="{{ Auth::user()->city_name }}">
                                         </div><!--end form-group-->                                        
                                         <div class="form-group">
                                             <label for="postal_code">Postal Code</label>
-                                            <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="Postal Code">
+                                            <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="Postal Code" value="{{ Auth::user()->postal_code }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="zip_code">Zip Code</label>
-                                            <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Zip Code">
+                                            <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Zip Code" value="{{ Auth::user()->zip_code }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="phone_no">Mobile Number</label>
-                                            <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Enter Mobile Number">
+                                            <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Enter Mobile Number" value="{{ Auth::user()->phone_no }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="landline_no">Landline Number</label>
-                                            <input type="text" class="form-control" id="landline_no" name="landline_no" placeholder="Enter Landline Number">
+                                            <input type="text" class="form-control" id="landline_no" name="landline_no" placeholder="Enter Landline Number" value="{{ Auth::user()->landline_no }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="comp_country_corporation_name">Company Country Name</label>
-                                            <input type="text" class="form-control" id="comp_country_corporation_name" name="comp_country_corporation_name" placeholder="Enter Company Country Name">
+                                            <input type="text" class="form-control" id="comp_country_corporation_name" name="comp_country_corporation_name" placeholder="Enter Company Country Name" value="{{ Auth::user()->comp_country_corporation_name }}">
                                         </div><!--end form-group-->
                                         <div class="form-group">
                                             <label for="comp_corporation_city">Company City Name</label>
-                                            <input type="text" class="form-control" id="comp_corporation_city" name="comp_corporation_city" placeholder="Enter Company City Name">
+                                            <input type="text" class="form-control" id="comp_corporation_city" name="comp_corporation_city" placeholder="Enter Company City Name" value="{{ Auth::user()->comp_corporation_city }}">
                                         </div><!--end form-group-->
                                      
                                         <input type = "hidden" name = "id" value = "{{Auth::user()->id}}">
@@ -271,6 +271,9 @@
                           console.log(data);
                           if (data.status) {
                               console.log('Record Inserted successfully');
+                              showUpdateSucces(data.message);  
+                              window.location.reload();
+                              
                           } else {
                            console.log('Record Not Inserted');
                           }

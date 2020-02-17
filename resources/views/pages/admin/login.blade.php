@@ -28,7 +28,7 @@
                             <!--end auth-logo-text-->
 
 
-                            <form class="form-horizontal auth-form my-4">
+                                 <form  method="POST" action="{{ route($loginRoute) }}">
                                    @csrf 
                                 <div class="form-group">
                                     <label for="email">Email</label>
@@ -85,45 +85,6 @@
     </div>
     <!--end row-->
     <!-- End Log In page -->
-
-    @include('includes.scripts')
-
-
-    <script>
-
-$(document).ready(function() {
-        $(".loginBtn").click(function(e) {
-  
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-    
-            e.preventDefault();
-            var email     = $("#email").val();
-            var password  = $("#password").val();
-    
-            $.ajax({
-                url: 'user_login',
-                type: 'POST',
-                data: {
-                    email: email,
-                    password: password
-                },
-                success: function(data) {
-                    if(data.status) {
-                        window.location = "{{ route('dashboard') }}"
-                        console.log('successfully submitted');
-                    } else {
-                        console.log('Data not submitted');
-                    }
-                }
-            });
-          });  
-        }); 
-    </script>
-
 </body>
 
 </html>
